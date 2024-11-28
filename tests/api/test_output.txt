@@ -22,9 +22,9 @@ tests/api/test_docker_endpoints.py::test_cloud_api_predict FAILED        [ 66%]
 tests/api/test_endpoints.py::test_root_is_up PASSED                      [ 72%]
 tests/api/test_endpoints.py::test_root_returns_greeting PASSED           [ 77%]
 tests/api/test_endpoints.py::test_predict_is_up PASSED                   [ 83%]
-tests/api/test_endpoints.py::test_predict_is_dict FAILED                 [ 88%]
-tests/api/test_endpoints.py::test_predict_has_key FAILED                 [ 94%]
-tests/api/test_endpoints.py::test_predict_val_is_float FAILED            [100%]
+tests/api/test_endpoints.py::test_predict_is_dict PASSED                 [ 88%]
+tests/api/test_endpoints.py::test_predict_has_key PASSED                 [ 94%]
+tests/api/test_endpoints.py::test_predict_val_is_float PASSED            [100%]
 
 =================================== FAILURES ===================================
 _______________________________ test_root_is_up ________________________________
@@ -123,42 +123,6 @@ ____________________________ test_cloud_api_predict ____________________________
 E       assert None
 
 tests/api/test_docker_endpoints.py:88: AssertionError
-_____________________________ test_predict_is_dict _____________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_is_dict():
-        from taxifare.api.fast import app
-        async with AsyncClient(app=app, base_url="http://test") as ac:
-            response = await ac.get("/predict", params=test_params)
->       assert isinstance(response.json(), dict)
-E       assert False
-E        +  where False = isinstance(None, dict)
-E        +    where None = json()
-E        +      where json = <Response [200 OK]>.json
-
-tests/api/test_endpoints.py:43: AssertionError
-_____________________________ test_predict_has_key _____________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_has_key():
-        from taxifare.api.fast import app
-        async with AsyncClient(app=app, base_url="http://test") as ac:
-            response = await ac.get("/predict", params=test_params)
->       assert response.json().get('fare', False)
-E       AttributeError: 'NoneType' object has no attribute 'get'
-
-tests/api/test_endpoints.py:52: AttributeError
-__________________________ test_predict_val_is_float ___________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_val_is_float():
-        from taxifare.api.fast import app
-        async with AsyncClient(app=app, base_url="http://test") as ac:
-            response = await ac.get("/predict", params=test_params)
->       assert isinstance(response.json().get('fare'), float)
-E       AttributeError: 'NoneType' object has no attribute 'get'
-
-tests/api/test_endpoints.py:60: AttributeError
 =========================== short test summary info ============================
 FAILED tests/api/test_cloud_endpoints.py::test_root_is_up - assert None
 FAILED tests/api/test_cloud_endpoints.py::test_root_returns_greeting - assert...
@@ -172,7 +136,4 @@ FAILED tests/api/test_docker_endpoints.py::test_predict_is_up - assert None
 FAILED tests/api/test_docker_endpoints.py::test_predict_is_dict - assert None
 FAILED tests/api/test_docker_endpoints.py::test_predict_has_key - assert None
 FAILED tests/api/test_docker_endpoints.py::test_cloud_api_predict - assert None
-FAILED tests/api/test_endpoints.py::test_predict_is_dict - assert False
-FAILED tests/api/test_endpoints.py::test_predict_has_key - AttributeError: 'N...
-FAILED tests/api/test_endpoints.py::test_predict_val_is_float - AttributeErro...
-=================== 15 failed, 3 passed, 8 warnings in 0.73s ===================
+================= 12 failed, 6 passed, 119 warnings in 27.95s ==================

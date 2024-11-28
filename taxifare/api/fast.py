@@ -1,8 +1,14 @@
 import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from taxifare.interface import main
+from taxifare.interface.main import pred
+from taxifare.ml_logic.preprocessor import preprocess_features
+from taxifare.ml_logic.registry import load_model
+
 
 app = FastAPI()
+app.state.model = load_model()
 
 # Allowing all middleware is optional, but good practice for dev purposes
 app.add_middleware(
@@ -28,7 +34,21 @@ def predict(
     Assumes `pickup_datetime` is provided as a string by the user in "%Y-%m-%d %H:%M:%S" format
     Assumes `pickup_datetime` implicitly refers to the "US/Eastern" timezone (as any user in New York City would naturally write)
     """
-    pass  # YOUR CODE HERE
+    X_pred = pd.DataFrame({
+        'pickup_datetime': [pd.Timestamp(pickup_datetime, tz="US/Eastern")],
+        'pickup_longitude': [pickup_longitude],
+        'pickup_latitude': [pickup_latitude],
+        'dropoff_longitude': [dropoff_longitude],
+        'dropoff_latitude': [dropoff_latitude],
+        'passenger_count': [passenger_count]
+        })
+
+    X_pred = preprocess_features(X_pred)
+    model = app.state.model
+    y_pred = model.predict(X_pred)
+
+    return {'fare': float(y_pred[0])}
+
 
 
 @app.get("/")
