@@ -13,12 +13,12 @@ tests/api/test_cloud_endpoints.py::test_predict_is_up FAILED             [ 16%]
 tests/api/test_cloud_endpoints.py::test_predict_is_dict FAILED           [ 22%]
 tests/api/test_cloud_endpoints.py::test_predict_has_key FAILED           [ 27%]
 tests/api/test_cloud_endpoints.py::test_cloud_api_predict FAILED         [ 33%]
-tests/api/test_docker_endpoints.py::test_root_is_up FAILED               [ 38%]
-tests/api/test_docker_endpoints.py::test_root_returns_greeting FAILED    [ 44%]
-tests/api/test_docker_endpoints.py::test_predict_is_up FAILED            [ 50%]
-tests/api/test_docker_endpoints.py::test_predict_is_dict FAILED          [ 55%]
-tests/api/test_docker_endpoints.py::test_predict_has_key FAILED          [ 61%]
-tests/api/test_docker_endpoints.py::test_cloud_api_predict FAILED        [ 66%]
+tests/api/test_docker_endpoints.py::test_root_is_up PASSED               [ 38%]
+tests/api/test_docker_endpoints.py::test_root_returns_greeting PASSED    [ 44%]
+tests/api/test_docker_endpoints.py::test_predict_is_up PASSED            [ 50%]
+tests/api/test_docker_endpoints.py::test_predict_is_dict PASSED          [ 55%]
+tests/api/test_docker_endpoints.py::test_predict_has_key PASSED          [ 61%]
+tests/api/test_docker_endpoints.py::test_cloud_api_predict PASSED        [ 66%]
 tests/api/test_endpoints.py::test_root_is_up PASSED                      [ 72%]
 tests/api/test_endpoints.py::test_root_returns_greeting PASSED           [ 77%]
 tests/api/test_endpoints.py::test_predict_is_up PASSED                   [ 83%]
@@ -75,54 +75,6 @@ ____________________________ test_cloud_api_predict ____________________________
 E       assert None
 
 tests/api/test_cloud_endpoints.py:70: AssertionError
-_______________________________ test_root_is_up ________________________________
-
-    @pytest.mark.asyncio
-    async def test_root_is_up():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:48: AssertionError
-__________________________ test_root_returns_greeting __________________________
-
-    @pytest.mark.asyncio
-    async def test_root_returns_greeting():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:56: AssertionError
-______________________________ test_predict_is_up ______________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_is_up():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:64: AssertionError
-_____________________________ test_predict_is_dict _____________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_is_dict():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:72: AssertionError
-_____________________________ test_predict_has_key _____________________________
-
-    @pytest.mark.asyncio
-    async def test_predict_has_key():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:81: AssertionError
-____________________________ test_cloud_api_predict ____________________________
-
-    @pytest.mark.asyncio
-    async def test_cloud_api_predict():
->       assert docker_port # Stop if no docker port found
-E       assert None
-
-tests/api/test_docker_endpoints.py:88: AssertionError
 =========================== short test summary info ============================
 FAILED tests/api/test_cloud_endpoints.py::test_root_is_up - assert None
 FAILED tests/api/test_cloud_endpoints.py::test_root_returns_greeting - assert...
@@ -130,10 +82,4 @@ FAILED tests/api/test_cloud_endpoints.py::test_predict_is_up - assert None
 FAILED tests/api/test_cloud_endpoints.py::test_predict_is_dict - assert None
 FAILED tests/api/test_cloud_endpoints.py::test_predict_has_key - assert None
 FAILED tests/api/test_cloud_endpoints.py::test_cloud_api_predict - assert None
-FAILED tests/api/test_docker_endpoints.py::test_root_is_up - assert None
-FAILED tests/api/test_docker_endpoints.py::test_root_returns_greeting - asser...
-FAILED tests/api/test_docker_endpoints.py::test_predict_is_up - assert None
-FAILED tests/api/test_docker_endpoints.py::test_predict_is_dict - assert None
-FAILED tests/api/test_docker_endpoints.py::test_predict_has_key - assert None
-FAILED tests/api/test_docker_endpoints.py::test_cloud_api_predict - assert None
-================= 12 failed, 6 passed, 119 warnings in 27.95s ==================
+================= 6 failed, 12 passed, 110 warnings in 13.41s ==================
