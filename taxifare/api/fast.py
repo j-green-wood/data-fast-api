@@ -33,4 +33,4 @@ def predict(
 
 @app.get("/")
 def root():
-    pass  # YOUR CODE HERE
+    return {'greeting': 'Hello'}
